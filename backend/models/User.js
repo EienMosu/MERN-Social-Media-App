@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    followins: { type: Array, default: [] },
+    followings: { type: Array, default: [] },
     isAdmin: { type: Boolean, default: false },
     desc: { type: String, max: 50, default:"" },
     city: { type: String, max: 50, default:""  },
