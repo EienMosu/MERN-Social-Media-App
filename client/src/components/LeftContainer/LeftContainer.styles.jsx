@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   flex: 1;
-  padding: 20px;
   height: calc(100vh - 70px);
+  top: 50px;
   position: sticky;
   overflow-y: scroll;
+  
+  z-index: 998;
 
   ::-webkit-scrollbar {
     width: 5px;
@@ -18,7 +20,10 @@ export const Container = styled.div`
   }
 `;
 
-export const TopContainer = styled.div``;
+export const TopContainer = styled.div`
+  margin-top: 20px;
+  margin-left: 20px;
+`;
 
 export const List = styled.ul`
   list-style: none;
@@ -56,12 +61,15 @@ export const CenterContainer = styled.div`
   display: flex;
   align-items: center;
   height: 50px;
+  margin-left: 20px;
 `;
 
 export const Line = styled.div`
-  width: 250px;
+  width: 300px;
   height: 0.5px;
-  background-color: black;
+  background-color: #b1b1b1;
 `;
 
-export const BottomContainer = styled.div``;
+export const BottomContainer = styled.div`
+  margin-left: 20px;
+`;

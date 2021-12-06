@@ -8,9 +8,9 @@ import {
   Center,
   Container,
   Left,
-  List,
   ListItem,
   Logo,
+  PersonNotification,
   Profile,
   Right,
   SearchBar,
@@ -33,17 +33,18 @@ const index = () => {
         <Span>Timeline</Span>
       </Center>
       <Right>
-        <List>
-          <ListItem>
-            <Person style={{ fontSize: "28px" }} />
-          </ListItem>
-          <ListItem>
-            <Notifications style={{ fontSize: "28px" }} />
-          </ListItem>
-          <ListItem>
-            <Message style={{ fontSize: "28px" }} />
-          </ListItem>
-        </List>
+        <ListItem>
+          <PersonNotification>1</PersonNotification>
+          <Person style={{ fontSize: "28px" }} />
+        </ListItem>
+        <ListItem>
+          <PersonNotification>5</PersonNotification>
+          <Message style={{ fontSize: "28px" }} />
+        </ListItem>
+        <ListItem>
+          <PersonNotification>2</PersonNotification>
+          <Notifications style={{ fontSize: "28px" }} />
+        </ListItem>
         <Profile src={Image} />
       </Right>
     </Container>

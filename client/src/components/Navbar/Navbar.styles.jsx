@@ -58,19 +58,28 @@ export const Right = styled.div`
   margin-right: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
 `;
 
-export const List = styled.ul`
-  display: flex;
-  list-style: none;
-`;
-
-export const ListItem = styled.li`
+export const ListItem = styled.div`
   color: white;
   font-size: 40px;
-  margin-left: 10px;
   cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+`;
+
+export const PersonNotification = styled.div`
+  position: absolute;
+  top: 5px;
+  right: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  width: 15px;
+  height: 15px;
+  background-color: crimson;
+  border-radius: 50%;
 `;
 
 export const Profile = styled.img`
@@ -78,5 +87,6 @@ export const Profile = styled.img`
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left: 50px;
   cursor: pointer;
 `;

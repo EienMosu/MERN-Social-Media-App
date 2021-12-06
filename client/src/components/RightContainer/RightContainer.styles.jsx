@@ -30,9 +30,11 @@ export const AdImage = styled.img`
   border-radius: 30px;
 `;
 
-export const OnlineContainer = styled.div``;
+export const OnlineContainer = styled.div`
+  margin-top: 20px;
+`;
 
-export const Title = styled.span `
+export const Title = styled.span`
   font-size: 24px;
   font-weight: 500;
-`
+`;

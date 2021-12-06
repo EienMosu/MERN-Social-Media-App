@@ -30,8 +30,8 @@ const RightContainer = () => {
       <AdContainer>
         <AdImage src={Ad} />
       </AdContainer>
+      <Title>Online Friends</Title>
       <OnlineContainer>
-        <Title>Online Friends</Title>
         {Users.map((user) => (
           <LeftContainerFriends
             name={user.username}
