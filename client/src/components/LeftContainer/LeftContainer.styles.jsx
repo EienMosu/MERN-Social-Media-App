@@ -6,7 +6,7 @@ export const Container = styled.div`
   top: 50px;
   position: sticky;
   overflow-y: scroll;
-  
+  width: 300px;
   z-index: 998;
 
   ::-webkit-scrollbar {
@@ -65,9 +65,9 @@ export const CenterContainer = styled.div`
 `;
 
 export const Line = styled.div`
-  width: 300px;
+  width: 90%;
   height: 0.5px;
-  background-color: #b1b1b1;
+  background-color: black;
 `;
 
 export const BottomContainer = styled.div`

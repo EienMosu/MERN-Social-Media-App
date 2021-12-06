@@ -14,7 +14,7 @@ const HomePage = () => {
       <MainContainer>
         <LeftContainer />
         <CenterContainer />
-        <RightContainer />
+        <RightContainer page="home" />
       </MainContainer>
     </>
   );

@@ -71,7 +71,7 @@ export const ListItem = styled.div`
 export const PersonNotification = styled.div`
   position: absolute;
   top: 5px;
-  right: -3px;
+  right: -4px;
   display: flex;
   align-items: center;
   justify-content: center;
