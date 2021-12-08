@@ -38,7 +38,7 @@ export const RightContainer = styled.div`
   justify-content: center;
 `;
 
-export const RightWrapper = styled.div`
+export const RightWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

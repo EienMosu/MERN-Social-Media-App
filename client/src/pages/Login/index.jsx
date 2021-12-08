@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+// Redux
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import history from "../../history";
+import { login } from "../../redux/apiCalls";
+// Styled Components
 import {
   Container,
   CreateButton,
@@ -14,6 +20,26 @@ import {
 } from "./Login.styles";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    const user = {
+      username,
+      password,
+    };
+    login(dispatch, user);
+  };
+
+  const handleCreate = () => {
+    history.push("/register");
+    history.go(0);
+  };
+
   return (
     <Container>
       <LeftContainer>
@@ -25,12 +51,23 @@ const Login = () => {
         </LeftWrapper>
       </LeftContainer>
       <RightContainer>
-        <RightWrapper>
-          <RightInput placeholder="Username" />
-          <RightInput placeholder="Password" />
+        <RightWrapper onSubmit={handleClick}>
+          <RightInput
+            placeholder="Username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <RightInput
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
           <LoginButton>Log In</LoginButton>
           <ForgotPassword>Forgot Password?</ForgotPassword>
-          <CreateButton>Create a New Account</CreateButton>
+
+          <CreateButton onClick={handleCreate}>
+            Create a New Account
+          </CreateButton>
         </RightWrapper>
       </RightContainer>
     </Container>

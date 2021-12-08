@@ -30,6 +30,7 @@ export const ProfilePicture = styled.img`
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left: 20px;
 `;
 
 export const PostInput = styled.input`

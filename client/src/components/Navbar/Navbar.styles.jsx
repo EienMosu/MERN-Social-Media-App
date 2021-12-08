@@ -20,6 +20,7 @@ export const Logo = styled.h1`
   font-size: 24px;
   color: white;
   cursor: pointer;
+  width: max-content;
 `;
 
 export const Center = styled.div`

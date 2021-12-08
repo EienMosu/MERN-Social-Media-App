@@ -17,12 +17,15 @@ import {
   SearchInput,
   Span,
 } from "./Navbar.styles";
+import { Link } from "react-router-dom";
 
 const index = () => {
   return (
     <Container>
       <Left>
-        <Logo>Ozkan's Social</Logo>
+        <Link to="/" style={{textDecoration:"none", width:"0px"}}>
+          <Logo>Ozkan's Social</Logo>
+        </Link>
       </Left>
       <Center>
         <SearchBar>

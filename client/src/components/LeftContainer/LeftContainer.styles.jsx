@@ -49,7 +49,7 @@ export const Span = styled.div`
 export const ShowMore = styled.button`
   border: none;
   border-radius: 5px;
-  background-color: #bebdbd;
+  background-color: #d4d4d4;
   font-size: 16px;
   font-weight: 500;
   width: 120px;

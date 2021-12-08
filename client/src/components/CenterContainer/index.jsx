@@ -5,12 +5,13 @@ import {
   Label,
   Room,
   EmojiEmotions,
-  PortraitSharp,
 } from "@material-ui/icons";
 // Image
 import Image from "../../assets/person/1.jpeg";
 // Dummy Data
 import { Posts } from "../../dummyData";
+// Components
+import Post from "../Post";
 // Styled Components
 import {
   BottomPostContainer,
@@ -25,7 +26,6 @@ import {
   ProfilePicture,
   TopPostContainer,
 } from "./CenterContainer.styles";
-import Post from "../Post";
 
 const CenterContainer = () => {
   return (
