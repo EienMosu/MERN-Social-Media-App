@@ -14,8 +14,6 @@ export const login = async (dispatch, user) => {
 
   try {
     const response = await publicRequest.post("/auth/login", user);
-
-    console.log(response.data);
     
     dispatch(loginSuccess(response.data));
   } catch (err) {
@@ -29,7 +27,6 @@ export const register = async (dispatch, user) => {
   try {
     const response = await publicRequest.post("/auth/register", user);
 
-    console.log(response.data);
     dispatch(registerSuccess(response.data));
   } catch (err) {
     dispatch(registerFailure());

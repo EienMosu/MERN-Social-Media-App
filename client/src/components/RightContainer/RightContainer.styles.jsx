@@ -39,6 +39,22 @@ export const Title = styled.span`
   font-weight: 500;
 `;
 
+export const FollowContainer = styled.div`
+  margin: 20px 0px;
+
+`;
+
+export const FollowButton = styled.button`
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+`;
+
 export const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Dummy Data
 import { Users } from "../../dummyData";
+// Timeago.js
+import { format } from "timeago.js";
+// Axios
+import { publicRequest } from "../../requestMethods";
 // Images
 import LikeIconPng from "../../assets/like.png";
 import HeartIconPng from "../../assets/heart.png";
@@ -25,27 +29,59 @@ import {
   UserContainer,
   Username,
 } from "./Post.styles";
+import { Link } from "react-router-dom";
 
-const Post = ({ desc, photo, date, userId, like, comment }) => {
-  const [postLike, setPostLike] = useState(like);
-  const [isLiked, setIsLiked] = useState(false);
+const Post = ({ desc, photo, date, userId, like, comment, id }) => {
+  const [postData, setPostData] = useState(null);
+  const [likeNumber, setLikeNumber] = useState(like);
+  const [preLikeNumber, setPreLikeNumber] = useState(false);
 
-  const handleLike = () => {
-    setPostLike(isLiked ? postLike - 1 : postLike + 1);
-    setIsLiked(!isLiked);
+  const handleLike = async () => {
+    setLikeNumber(preLikeNumber ? likeNumber - 1 : likeNumber + 1);
+    setPreLikeNumber(!preLikeNumber);
+
+    try {
+      await publicRequest.put(`/posts/${id}/like`, { userId });
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const response = await publicRequest.get(`/users/${userId}`);
+
+        setPostData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getPost();
+  }, []);
 
   return (
     <Container>
       <TopContainer>
         <UserContainer>
-          <ProfilePicture
-            src={Users.filter((user) => user.id === userId)[0].profilePicture}
-          />
-          <Username>
-            {Users.filter((user) => user.id === userId)[0].username}
-          </Username>
-          <HourAgo>{date}</HourAgo>
+          {postData && (
+            <>
+              <Link to={`/user/${userId}`}>
+                <ProfilePicture src={postData.profilePicture} />
+              </Link>
+              <Link
+                to={`/user/${userId}`}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Username>
+                  {postData.username.charAt(0).toUpperCase() +
+                    postData.username.slice(1)}
+                </Username>
+              </Link>
+            </>
+          )}
+          <HourAgo>{format(date)}</HourAgo>
         </UserContainer>
         <MoreContainer>
           <MoreVert style={{ cursor: "pointer" }} />
@@ -53,17 +89,15 @@ const Post = ({ desc, photo, date, userId, like, comment }) => {
       </TopContainer>
       <CenterContainer>
         <Desc>{desc}</Desc>
-        <PostImage src={photo} />
+        {photo && <PostImage src={photo} />}
       </CenterContainer>
       <BottomContainer>
         <LikeContainer>
           <LikeIcon src={LikeIconPng} onClick={handleLike} />
           <HeartIcon src={HeartIconPng} onClick={handleLike} />
-          <LikeInfo>{postLike} people like it</LikeInfo>
+          <LikeInfo>{likeNumber} people like it</LikeInfo>
         </LikeContainer>
-        <Comment>
-          {comment <= 1 ? `${comment} comment` : `${comment} comments`}
-        </Comment>
+        <Comment>{comment ? `${comment} comments` : "0 comment"}</Comment>
       </BottomContainer>
     </Container>
   );

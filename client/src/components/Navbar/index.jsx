@@ -2,7 +2,9 @@ import React from "react";
 // Matererial UI Icons
 import { Person, Notifications, Message, Search } from "@material-ui/icons";
 // Image
-import Image from "../../assets/person/1.jpeg";
+// import Image from "../../assets/person/1.jpeg";
+// Reacr Router
+import { Link } from "react-router-dom";
 // Styled Components
 import {
   Center,
@@ -17,13 +19,15 @@ import {
   SearchInput,
   Span,
 } from "./Navbar.styles";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const index = () => {
+const Navbar = () => {
+  const user = useSelector((state) => state.user.currentUser);
+
   return (
     <Container>
       <Left>
-        <Link to="/" style={{textDecoration:"none", width:"0px"}}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Logo>Ozkan's Social</Logo>
         </Link>
       </Left>
@@ -48,10 +52,12 @@ const index = () => {
           <PersonNotification>2</PersonNotification>
           <Notifications style={{ fontSize: "28px" }} />
         </ListItem>
-        <Profile src={Image} />
+        <Link to={`/user/${user._id}`}>
+          <Profile src={user.profilePicture} />
+        </Link>
       </Right>
     </Container>
   );
 };
 
-export default index;
+export default Navbar;

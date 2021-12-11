@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 export const TopContainer = styled.div`

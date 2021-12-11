@@ -33,7 +33,7 @@ export const ListItem = styled.li`
   margin-bottom: 20px;
   display: flex;
   cursor: pointer;
-  width: max-content;
+  height: 27px;
 
   &:hover {
     background-color: #d6d6d6;

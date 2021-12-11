@@ -13,6 +13,8 @@ import {
   BirthdayContainer,
   BirthdayIcon,
   Container,
+  FollowButton,
+  FollowContainer,
   OnlineContainer,
   Span,
   Title,
@@ -29,7 +31,7 @@ import {
   UserInfoTitle,
 } from "./RightContainer.styles";
 
-const RightContainer = ({ page }) => {
+const RightContainer = ({ page, city, from, relationShip }) => {
   return (
     <Container>
       {page === "home" ? (
@@ -58,32 +60,35 @@ const RightContainer = ({ page }) => {
         </>
       ) : (
         <>
-        <UserInfoContainer>
-          <UserInfoTitle>User Information</UserInfoTitle>
-          <UserInfo>
-            <UserInfoName>City:</UserInfoName>
-            <UserInfoDetail>New York</UserInfoDetail>
-          </UserInfo>
-          <UserInfo>
-            <UserInfoName>From:</UserInfoName>
-            <UserInfoDetail>Madrid</UserInfoDetail>
-          </UserInfo>
-          <UserInfo>
-            <UserInfoName>Relationship:</UserInfoName>
-            <UserInfoDetail>Single</UserInfoDetail>
-          </UserInfo>
-        </UserInfoContainer>
-        <UserFriendsContainer>
-          <UserFriendsTitle>User Friends</UserFriendsTitle>
-          <UserFriends>
-            {Users.map((user) => (
-              <User>
-              <UserFriendsPhotos src={user.profilePicture}/>
-              <UserFriendsUsernames>{user.username}</UserFriendsUsernames>
-            </User>
+          <FollowContainer>
+            <FollowButton>Follow</FollowButton>
+          </FollowContainer>
+          <UserInfoContainer>
+            <UserInfoTitle>User Information</UserInfoTitle>
+            <UserInfo>
+              <UserInfoName>City:</UserInfoName>
+              <UserInfoDetail>{city}</UserInfoDetail>
+            </UserInfo>
+            <UserInfo>
+              <UserInfoName>From:</UserInfoName>
+              <UserInfoDetail>{from}</UserInfoDetail>
+            </UserInfo>
+            <UserInfo>
+              <UserInfoName>Relationship:</UserInfoName>
+              <UserInfoDetail>{relationShip}</UserInfoDetail>
+            </UserInfo>
+          </UserInfoContainer>
+          <UserFriendsContainer>
+            <UserFriendsTitle>User Friends</UserFriendsTitle>
+            <UserFriends>
+              {Users.map((user) => (
+                <User key={user.id}>
+                  <UserFriendsPhotos src={user.profilePicture} />
+                  <UserFriendsUsernames>{user.username}</UserFriendsUsernames>
+                </User>
               ))}
-          </UserFriends>
-        </UserFriendsContainer>
+            </UserFriends>
+          </UserFriendsContainer>
         </>
       )}
     </Container>
