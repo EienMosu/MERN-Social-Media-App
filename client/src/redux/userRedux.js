@@ -7,6 +7,7 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     error: false,
+    isLiked: false,
   },
   reducers: {
     loginStart: (state) => {
@@ -43,6 +44,12 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    postLike: (state) => {
+      state.isLiked = true;
+    },
+    postDislike: (state) => {
+      state.isLiked = false;
+    },
   },
 });
 
@@ -51,6 +58,8 @@ export const {
   loginSuccess,
   loginFailure,
   logout,
+  postLike,
+  postDislike,
   registerStart,
   registerSuccess,
   registerFailure,

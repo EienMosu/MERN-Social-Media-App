@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Dummy Data
-import { Users } from "../../dummyData";
+// import { Users } from "../../dummyData";
 // Timeago.js
 import { format } from "timeago.js";
 // Axios

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // Redux
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import history from "../../history";
 import { login } from "../../redux/apiCalls";
 // Styled Components

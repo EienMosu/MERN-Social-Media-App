@@ -3,7 +3,6 @@ import {
   loginFailure,
   loginStart,
   loginSuccess,
-  logout,
   registerFailure,
   registerStart,
   registerSuccess,

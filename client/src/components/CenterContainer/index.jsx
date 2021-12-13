@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Material UI Icons
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
 // Image
-import Image from "../../assets/person/1.jpeg";
+// import Image from "../../assets/person/1.jpeg";
 // Axios
 import { publicRequest } from "../../requestMethods";
 // Dummy Data
