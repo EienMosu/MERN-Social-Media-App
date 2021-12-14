@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 // Redux
 import { useDispatch } from "react-redux";
-import history from "../../history";
 import { login } from "../../redux/apiCalls";
+// Custom History
+import history from "../../history";
 // Styled Components
 import {
   Container,

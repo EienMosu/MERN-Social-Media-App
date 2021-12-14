@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // Images
-import ProfilePhoto from "../../assets/person/1.jpeg";
-import CoverPicture from "../../assets/post/4.jpeg";
+// import ProfilePhoto from "../../assets/person/1.jpeg";
+// import CoverPicture from "../../assets/post/4.jpeg";
 // Components
 import LeftContainer from "../../components/LeftContainer";
 import CenterContainer from "../../components/CenterContainer";
