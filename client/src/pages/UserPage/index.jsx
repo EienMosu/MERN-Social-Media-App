@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
-// Images
-// import ProfilePhoto from "../../assets/person/1.jpeg";
-// import CoverPicture from "../../assets/post/4.jpeg";
+import React, { useEffect, useState, useRef } from "react";
+// Firebase
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import app from "../../firebase";
 // Components
 import LeftContainer from "../../components/LeftContainer";
 import CenterContainer from "../../components/CenterContainer";
 import Navbar from "../../components/Navbar";
 import RightContainer from "../../components/RightContainer";
-// Redux
-import { useSelector } from "react-redux";
 // Axios
 import { publicRequest } from "../../requestMethods";
+// React Router
+import { useParams } from "react-router-dom";
+// Styled Components
 import {
   BottomContainer,
   Container,
@@ -22,11 +28,8 @@ import {
   UserMessage,
   Username,
 } from "./UserPage.styles";
-import { useParams } from "react-router-dom";
 
 const UserPage = () => {
-  const params = useParams();
-  const userId = params.id;
   const initialState = {
     username: "",
     profilePicture: "",
@@ -36,7 +39,12 @@ const UserPage = () => {
     realationShip: "",
   };
 
+  const params = useParams();
+  const userId = params.id;
+
   const [user, setUser] = useState(initialState);
+  const [file, setFile] = useState(null);
+  const inputRef = useRef();
 
   useEffect(() => {
     const getUser = async () => {
@@ -53,6 +61,118 @@ const UserPage = () => {
     getUser();
   }, []);
 
+  const handleProfilePicture = async () => {
+    const fileName = new Date().getTime() + file.name;
+    const storage = getStorage(app);
+    const storageRef = ref(storage, fileName);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          const userId = user._id;
+
+          const postDetails = {
+            userId,
+            profilePicture: downloadURL,
+          };
+          try {
+            await publicRequest.put(`/users/${userId}`, postDetails);
+
+            window.location.reload(false);
+          } catch (err) {
+            console.log(err);
+          }
+        });
+      }
+    );
+  };
+
+  const handleCoverPicture = async () => {
+    const fileName = new Date().getTime() + file.name;
+    const storage = getStorage(app);
+    const storageRef = ref(storage, fileName);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          const userId = user._id;
+
+          const postDetails = {
+            userId,
+            coverPicture: downloadURL,
+          };
+          try {
+            await publicRequest.put(`/users/${userId}`, postDetails);
+
+            window.location.reload(false);
+          } catch (err) {
+            console.log(err);
+          }
+        });
+      }
+    );
+  };
+
+  const handleFileInput = () => {
+    inputRef.current.click();
+  };
+
   return (
     <>
       <Navbar />
@@ -61,8 +181,19 @@ const UserPage = () => {
         {user && (
           <RightPageContainer>
             <UserContainer>
-              <CoverPhoto src={user.coverPicture} />
-              <ProfilePicture src={user.profilePicture} />
+              <input
+                type="file"
+                ref={inputRef}
+                style={{ display: "none" }}
+                onChange={(event) => setFile(event.target.files[0])}
+              />
+              <CoverPhoto src={user.coverPicture} onClick={handleFileInput} />
+              <button onClick={handleCoverPicture}>submit</button>
+              <ProfilePicture
+                src={user.profilePicture}
+                onClick={handleFileInput}
+              />
+              <button onClick={handleProfilePicture}>pro submit</button>
               <UserInfoContainer>
                 <Username>
                   {user.username.charAt(0).toUpperCase() +

@@ -19,10 +19,16 @@ import {
   SearchInput,
   Span,
 } from "./Navbar.styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/userRedux";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <Container>
@@ -55,6 +61,7 @@ const Navbar = () => {
         <Link to={`/user/${user._id}`}>
           <Profile src={user.profilePicture} />
         </Link>
+        <Span onClick={handleLogout}>Logout</Span>
       </Right>
     </Container>
   );

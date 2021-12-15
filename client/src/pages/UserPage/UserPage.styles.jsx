@@ -38,7 +38,7 @@ export const UserInfoContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 110px;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 `;
 export const Username = styled.h3`
   font-size: 40px;
