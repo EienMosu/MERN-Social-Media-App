@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const helmet = require("helmet");
+const cors = require("cors");
 //routes
 const usersRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -20,6 +21,7 @@ mongoose
     console.log(err);
   });
 
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));

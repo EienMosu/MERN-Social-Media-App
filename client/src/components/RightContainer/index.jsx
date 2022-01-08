@@ -2,8 +2,16 @@ import React from "react";
 // Image
 import Gift from "../../assets/gift.png";
 import Ad from "../../assets/ad.png";
+// Custom History
+import history from "../../history";
 // Components
 import LeftContainerFriends from "../LeftContainerFriends";
+// React Router
+import { useParams } from "react-router-dom";
+// Axios
+import { publicRequest } from "../../requestMethods";
+// Redux
+import { useSelector } from "react-redux";
 // Dummy Data
 import { Users } from "../../dummyData";
 // Styled Components
@@ -32,6 +40,20 @@ import {
 } from "./RightContainer.styles";
 
 const RightContainer = ({ page, city, from, relationShip }) => {
+  const params = useParams();
+  const userId = useSelector((state) => state.user.currentUser._id);
+
+  const handleFollow = async () => {
+    try {
+      await publicRequest.put(`/users/${params.id}/follow`, { userId });
+
+      history.push("/");
+      history.go(0);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container>
       {page === "home" ? (
@@ -61,7 +83,7 @@ const RightContainer = ({ page, city, from, relationShip }) => {
       ) : (
         <>
           <FollowContainer>
-            <FollowButton>Follow</FollowButton>
+            <FollowButton onClick={handleFollow}>Follow</FollowButton>
           </FollowContainer>
           <UserInfoContainer>
             <UserInfoTitle>User Information</UserInfoTitle>

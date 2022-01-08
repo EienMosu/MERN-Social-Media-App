@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/apiCalls";
 // Custom History
 import history from "../../history";
@@ -8,6 +8,7 @@ import history from "../../history";
 import {
   Container,
   CreateButton,
+  ErrorSpan,
   ForgotPassword,
   LeftContainer,
   LeftDesc,
@@ -21,6 +22,7 @@ import {
 
 const Login = () => {
   const dispatch = useDispatch();
+  const userError = useSelector((state) => state.user.error);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,6 +34,7 @@ const Login = () => {
       username,
       password,
     };
+
     login(dispatch, user);
   };
 
@@ -58,13 +61,14 @@ const Login = () => {
             onChange={(event) => setUsername(event.target.value)}
           />
           <RightInput
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
           <LoginButton>Log In</LoginButton>
           <ForgotPassword>Forgot Password?</ForgotPassword>
-
+          {userError && <ErrorSpan>Wrong Credentials!</ErrorSpan>}
           <CreateButton onClick={handleCreate}>
             Create a New Account
           </CreateButton>

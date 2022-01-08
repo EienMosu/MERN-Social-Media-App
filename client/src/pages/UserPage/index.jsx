@@ -23,6 +23,7 @@ import {
   CoverPhoto,
   ProfilePicture,
   RightPageContainer,
+  SubmitButton,
   UserContainer,
   UserInfoContainer,
   UserMessage,
@@ -181,19 +182,8 @@ const UserPage = () => {
         {user && (
           <RightPageContainer>
             <UserContainer>
-              <input
-                type="file"
-                ref={inputRef}
-                style={{ display: "none" }}
-                onChange={(event) => setFile(event.target.files[0])}
-              />
-              <CoverPhoto src={user.coverPicture} onClick={handleFileInput} />
-              <button onClick={handleCoverPicture}>submit</button>
-              <ProfilePicture
-                src={user.profilePicture}
-                onClick={handleFileInput}
-              />
-              <button onClick={handleProfilePicture}>pro submit</button>
+              <CoverPhoto src={user.coverPicture} />
+              <ProfilePicture src={user.profilePicture} />
               <UserInfoContainer>
                 <Username>
                   {user.username.charAt(0).toUpperCase() +
@@ -202,6 +192,19 @@ const UserPage = () => {
                 <UserMessage>{user.desc}</UserMessage>
               </UserInfoContainer>
             </UserContainer>
+            <input
+              type="file"
+              ref={inputRef}
+              style={{ display: "none" }}
+              onChange={(event) => setFile(event.target.files[0])}
+            />
+            <SubmitButton onClick={handleFileInput}>Add Photo</SubmitButton>
+            <SubmitButton onClick={handleProfilePicture}>
+              Change Profile Picture
+            </SubmitButton>
+            <SubmitButton onClick={handleCoverPicture}>
+              Change Cover Image
+            </SubmitButton>
             <BottomContainer>
               <CenterContainer />
               <RightContainer

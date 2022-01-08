@@ -19,6 +19,7 @@ import {
   SearchInput,
   Span,
 } from "./Navbar.styles";
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userRedux";
 

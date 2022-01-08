@@ -40,8 +40,22 @@ export const UserInfoContainer = styled.div`
   margin-top: 110px;
   margin-bottom: 15px;
 `;
+
 export const Username = styled.h3`
   font-size: 40px;
+`;
+
+export const SubmitButton = styled.button`
+  background-color: blue;
+  color: white;
+  width: 150px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px;
+  cursor: pointer;
 `;
 
 export const UserMessage = styled.span`

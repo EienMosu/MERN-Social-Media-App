@@ -8,6 +8,25 @@ export const Container = styled.div`
   
 `;
 
+export const AddFriendContainer = styled.div `
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  text-align:center;
+`
+
+export const FriendTitle = styled.h1 `
+  font-size: 24px;
+  font-weight: 400;
+  margin: 5px 0px;
+`
+
+export const Friends = styled.span `
+  font-size: 18px;
+  margin: 2px 0px;
+  cursor:pointer;
+`
+
 export const PostContainer = styled.div`
   width: 90%;
   height: 200px;

@@ -2,7 +2,6 @@ const router = require("express").Router();
 const User = require("../models/User");
 const dotenv = require("dotenv");
 const CryptoJS = require("crypto-js");
-
 dotenv.config();
 
 // Register

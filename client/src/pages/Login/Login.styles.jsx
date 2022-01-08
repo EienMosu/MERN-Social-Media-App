@@ -89,3 +89,9 @@ export const CreateButton = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const ErrorSpan = styled.span `
+  font-size: 12px;
+  color: red;
+  margin: 5px 0px;
+`
