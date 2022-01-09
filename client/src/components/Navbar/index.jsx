@@ -5,6 +5,9 @@ import { Person, Notifications, Message, Search } from "@material-ui/icons";
 // import Image from "../../assets/person/1.jpeg";
 // Reacr Router
 import { Link } from "react-router-dom";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/userRedux";
 // Styled Components
 import {
   Center,
@@ -19,9 +22,6 @@ import {
   SearchInput,
   Span,
 } from "./Navbar.styles";
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/userRedux";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -43,8 +43,15 @@ const Navbar = () => {
           <Search />
           <SearchInput placeholder="Search for friend, post or video" />
         </SearchBar>
-        <Span>Homepage</Span>
-        <Span>Timeline</Span>
+        <Link
+          to={`/user/${user._id}`}
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <Span>Homepage</Span>
+        </Link>
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <Span>Timeline</Span>
+        </Link>
       </Center>
       <Right>
         <ListItem>

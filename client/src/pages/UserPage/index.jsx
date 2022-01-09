@@ -29,6 +29,7 @@ import {
   UserMessage,
   Username,
 } from "./UserPage.styles";
+import { useSelector } from "react-redux";
 
 const UserPage = () => {
   const initialState = {
@@ -42,6 +43,7 @@ const UserPage = () => {
 
   const params = useParams();
   const userId = params.id;
+  const currentUser = useSelector((state) => state.user.currentUser._id);
 
   const [user, setUser] = useState(initialState);
   const [file, setFile] = useState(null);
@@ -198,13 +200,17 @@ const UserPage = () => {
               style={{ display: "none" }}
               onChange={(event) => setFile(event.target.files[0])}
             />
-            <SubmitButton onClick={handleFileInput}>Add Photo</SubmitButton>
-            <SubmitButton onClick={handleProfilePicture}>
-              Change Profile Picture
-            </SubmitButton>
-            <SubmitButton onClick={handleCoverPicture}>
-              Change Cover Image
-            </SubmitButton>
+            {userId === currentUser && (
+              <>
+                <SubmitButton onClick={handleFileInput}>Add Photo</SubmitButton>
+                <SubmitButton onClick={handleProfilePicture}>
+                  Change Profile Picture
+                </SubmitButton>
+                <SubmitButton onClick={handleCoverPicture}>
+                  Change Cover Image
+                </SubmitButton>
+              </>
+            )}
             <BottomContainer>
               <CenterContainer />
               <RightContainer
